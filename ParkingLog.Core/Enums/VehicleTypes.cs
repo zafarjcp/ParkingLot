@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ParkingLog.Core.Enums
+namespace ParkingLotCore.Enums
 {
     public enum VehicleTypes
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ParkingLog.Core.Models
+namespace ParkingLotCore.Models
 {
     public class Car
     {

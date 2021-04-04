@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParkingLog.Services
+namespace ParkingLotServices
 {
     public class Class1
     {

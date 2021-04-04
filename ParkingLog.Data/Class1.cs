@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParkingLog.Data
+namespace ParkingLotData
 {
     public class Class1
     {

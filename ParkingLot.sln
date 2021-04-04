@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLot.Api", "ParkingLot\ParkingLot.Api.csproj", "{664AF46C-66B9-473D-A2AA-26A5F0812112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Api", "ParkingLot\ParkingLot.Api.csproj", "{664AF46C-66B9-473D-A2AA-26A5F0812112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLog.Core", "ParkingLog.Core\ParkingLog.Core.csproj", "{9620CC53-8073-4CF7-8294-C589FAA5669E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Core", "ParkingLog.Core\ParkingLot.Core.csproj", "{9620CC53-8073-4CF7-8294-C589FAA5669E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLog.Services", "ParkingLog.Services\ParkingLog.Services.csproj", "{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Services", "ParkingLog.Services\ParkingLot.Services.csproj", "{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLog.Data", "ParkingLog.Data\ParkingLog.Data.csproj", "{D6C52279-A734-4536-ABE1-FCAE5210B019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Data", "ParkingLog.Data\ParkingLot.Data.csproj", "{D6C52279-A734-4536-ABE1-FCAE5210B019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

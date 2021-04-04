@@ -10,6 +10,6 @@ namespace ParkingLog.Core.Interfaces
     {
         bool ParkCar(Car car);
         bool UnParkCar(Car car);
-        ParkingSpotStatus GetParkingStatus(Parking slot);
+        ParkingStatus GetParkingStatus(Parking slot);
     }
 }

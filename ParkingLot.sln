@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Api", "ParkingLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Core", "ParkingLog.Core\ParkingLot.Core.csproj", "{9620CC53-8073-4CF7-8294-C589FAA5669E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Services", "ParkingLog.Services\ParkingLot.Services.csproj", "{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingLot.Data", "ParkingLog.Data\ParkingLot.Data.csproj", "{D6C52279-A734-4536-ABE1-FCAE5210B019}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{9620CC53-8073-4CF7-8294-C589FAA5669E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9620CC53-8073-4CF7-8294-C589FAA5669E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9620CC53-8073-4CF7-8294-C589FAA5669E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66DFA5D9-DAC0-4DA2-90BC-0E2082E3C7EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6C52279-A734-4536-ABE1-FCAE5210B019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6C52279-A734-4536-ABE1-FCAE5210B019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6C52279-A734-4536-ABE1-FCAE5210B019}.Release|Any CPU.ActiveCfg = Release|Any CPU

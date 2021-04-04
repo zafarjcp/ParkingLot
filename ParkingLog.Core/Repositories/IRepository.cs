@@ -9,9 +9,6 @@ namespace ParkingLotCore.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        Dictionary<string, string>.ValueCollection GetAllAsync();
-        void Add(Parking parking);
-        void Remove(string key);
-        
+        Dictionary<string, int>.ValueCollection GetAllAsync();
     }
 }

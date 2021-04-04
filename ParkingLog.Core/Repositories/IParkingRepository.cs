@@ -9,11 +9,9 @@ namespace ParkingLotCore.Repositories
 {
     public interface IParkingRepository : IRepository<Parking>
     {
-        bool ParkCar(Car car);
-        bool UnParkCar(Car car);
-        ParkingStatus GetParkingSlotStatus(Parking slot);
-        Task<IEnumerable<Parking>> GetParkingByStatusAsync(ParkingStatus parkingStatus);
-        Task<IEnumerable<Parking>> GetSlotInformationByCarNumberAsync(string car_number);
-        Task<IEnumerable<Parking>> GetSlotInformationBySlotNumberAsync(string car_number);
+        bool ParkCar(Parking parking);
+        bool UnParkCar(Parking parking);
+        KeyValuePair<string, int> GetSlotInformationByCarNumber(string car_number);
+        KeyValuePair<string, int> GetSlotInformationBySlotNumber(int slot_number);
     }
 }

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParkingLog.Core\ParkingLot.Core.csproj" />
-    <ProjectReference Include="..\ParkingLotCore\ParkingLotCore.csproj" />
   </ItemGroup>
 
 </Project>

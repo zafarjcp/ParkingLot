@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingLot.Core
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IParkingRepository Parkings { get; }
     }

@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ParkingLotCore\ParkingLotCore.csproj" />
-    <ProjectReference Include="..\ParkingLotServices\ParkingLotServices.csproj" />
+    <ProjectReference Include="..\ParkingLog.Core\ParkingLot.Core.csproj" />
   </ItemGroup>
 
 

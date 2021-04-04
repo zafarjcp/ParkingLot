@@ -9,6 +9,5 @@ namespace ParkingLot.Core
     public interface IUnitOfWork : IDisposable
     {
         IParkingRepository Parkings { get; }
-        Task<int> CommitAsync();
     }
 }

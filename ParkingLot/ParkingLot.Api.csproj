@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ParkingLog.Core\ParkingLot.Core.csproj" />
+    <ProjectReference Include="..\ParkingLog.Data\ParkingLot.Data.csproj" />
   </ItemGroup>
 
 

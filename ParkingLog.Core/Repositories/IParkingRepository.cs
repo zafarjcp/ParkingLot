@@ -9,8 +9,8 @@ namespace ParkingLotCore.Repositories
 {
     public interface IParkingRepository : IRepository<Parking>
     {
-        bool ParkCar(Parking parking);
-        bool UnParkCar(Parking parking);
+        ServiceResponse ParkCar(Parking parking);
+        ServiceResponse UnParkCar(Parking parking);
         KeyValuePair<string, int> GetSlotInformationByCarNumber(string car_number);
         KeyValuePair<string, int> GetSlotInformationBySlotNumber(int slot_number);
     }

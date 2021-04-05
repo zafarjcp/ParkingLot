@@ -8,6 +8,7 @@ namespace ParkingLotCore.Models
     {
         public Parking()
         {
+            car = new Car();
             cars = new HashSet<Car>();
         }
         public int slot_number { get; set; }

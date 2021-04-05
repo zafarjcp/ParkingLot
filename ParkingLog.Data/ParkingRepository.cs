@@ -20,52 +20,78 @@ namespace ParkingLot.Data
             parkingCapacity = _parkingCapacity;
         }
 
-        public bool ParkCar(Parking parking)
+        public ServiceResponse ParkCar(Parking parking)
         {
-            ValidateInput(parking);
-            
+            ServiceResponse response = new ServiceResponse();
+            string message = ValidateInput(parking);
+            if (message != string.Empty)
+            {
+                response.isSuccessful = false;
+                response.message = message;
+                return response;
+            }
+
             if (parkings.Count >= parkingCapacity)
             {
-                throw new InvalidOperationException($"Parking is full");
+                response.isSuccessful = false;
+                response.message = "Parking is full";
+                return response;
             }
 
             parkings.Add(parking.car.car_number, parking.slot_number);
-            
-            return true;
+
+            response.isSuccessful = true;
+            response.message = "Car parked successfully";
+            return response;
         }
 
-        public bool UnParkCar(Parking parking) 
+        public ServiceResponse UnParkCar(Parking parking) 
         {
+            ServiceResponse response = new ServiceResponse();
             int slotNumber = 0;
-            ValidateInput(parking);
-            
+            string message = ValidateInput(parking);
+            if (message != string.Empty)
+            {
+                response.isSuccessful = false;
+                response.message = message;
+                return response;
+            }
+
             parkings.TryGetValue(parking.car.car_number, out slotNumber);
             if (slotNumber > 0)
+            {
                 parkings.Remove(parking.car.car_number);
+                response.isSuccessful = true;
+                response.message = "Car unparked successfully.";
+            }
             else
-                return false;
+            {
+                response.isSuccessful = false;
+                response.message = "Unable to unpark Car. Invalid Slot Number.";
+            }
 
-            return true;
+            return response;
         }
 
-        private void ValidateInput(Parking parking)
+        private string ValidateInput(Parking parking)
         {
             if (parking == null)
-            {
-                throw new InvalidOperationException($"Bad Request, parking information can't be null");
+            {                
+                return $"Bad Request, parking information can't be null";
             }
-            else if (parking.car == null)
+            else if (parking.car.car_number == null)
             {
-                throw new InvalidOperationException($"Bad Request, Car information not provided");
+                return $"Bad Request, Car information not provided";
             }
-            else if (parking.car != null && parkings.ContainsKey(parking.car.car_number))
+            else if (parking.car.car_number != null && parkings.ContainsKey(parking.car.car_number))
             {
-                throw new InvalidOperationException($"Car with number {parking.car.car_number} is already parked");
+                return $"Car with number {parking.car.car_number} is already parked";
             }
             else if (parkings.ContainsValue(parking.slot_number))
             {
-                throw new InvalidOperationException($"Car with slot number {parking.slot_number} is already parked");
+                return $"Car with slot number {parking.slot_number} is already parked";
             }
+            return string.Empty;
         }
 
         public KeyValuePair<string, int> GetSlotInformationByCarNumber(string car_number)

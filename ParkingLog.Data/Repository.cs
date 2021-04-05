@@ -10,23 +10,23 @@ namespace ParkingLot.Data
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly Dictionary<string,int> Context;
+        protected readonly Dictionary<int, string> Context;
 
-        public Repository(Dictionary<string, int> context)
+        public Repository(Dictionary<int, string> context)
         {
             this.Context = context;
         }
         public void Add(Parking parking)
         {
-            Context.Add(parking.car.car_number, parking.slot_number);
+            Context.Add(parking.slot_number, parking.car.car_number);
         }
 
-        public Dictionary<string, int>.ValueCollection GetAllAsync()
+        public Dictionary<int, string>.ValueCollection GetAllAsync()
         {
             return Context.Values;
         }
 
-        public void Remove(string key)
+        public void Remove(int key)
         {
             Context.Remove(key);
         }

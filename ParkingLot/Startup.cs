@@ -27,8 +27,8 @@ namespace ParkingLot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<UnitOfWork>();
-            
+            services.AddControllersWithViews();
+            services.AddScoped<UnitOfWork>();            
 
         }
 
@@ -37,7 +37,12 @@ namespace ParkingLot
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+                //app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseStatusCodePages();
             }
 
             app.UseHttpsRedirection();

@@ -16,9 +16,13 @@ namespace ParkingLot.Data
         {
             this.Context = context;
         }
+
         public void Add(Parking parking)
         {
-            Context.Add(parking.slot_number, parking.car.car_number);
+            lock (Context)
+            {
+                Context.Add(parking.slot_number, parking.car.car_number);
+            }            
         }
 
         public Dictionary<int, string>.ValueCollection GetAllAsync()

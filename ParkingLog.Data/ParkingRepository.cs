@@ -43,12 +43,23 @@ namespace ParkingLot.Data
                 return response;
             }
 
-            int slotIndex = 0;
             var slotInfo = parkings.Where(x => x.Value == "").FirstOrDefault();
             if (slotInfo.Key == 0)
-                parkings.Add(parkings.Count, parking.car.car_number);
-            else
-                parkings[slotInfo.Key] = parking.car.car_number;
+            {
+                lock (parkings)
+                {
+                    parkings.Add(parkings.Count, parking.car.car_number);
+                }
+            }
+            else 
+            {
+                lock (parkings) 
+                {
+                    parkings[slotInfo.Key] = parking.car.car_number;
+                }
+                
+            }
+                
             
             response.isSuccessful = true;
             response.message = "Car parked successfully";
@@ -72,9 +83,12 @@ namespace ParkingLot.Data
 
             var slotInfo = parkings.Where(x => x.Key == parking.slot_number).FirstOrDefault();
             if (slotInfo.Key > 0)
-            {                
-                parkings.Remove(slotInfo.Key);
-                parkings.Add(slotInfo.Key, "");//Once slot created will not be removed.just will be set for empty.
+            {
+                lock (parkings)
+                {
+                    parkings.Remove(slotInfo.Key);
+                    parkings.Add(slotInfo.Key, "");//Once slot created will not be removed.just will be set for empty.
+                }
                 response.isSuccessful = true;
                 response.message = "Car unparked successfully.";
             }
@@ -132,7 +146,7 @@ namespace ParkingLot.Data
             else if (parking.car.car_number == null)
             {
                 response.isSuccessful = false;
-                response.message = $"Bad Request, Car information not provided";
+                response.message = $"Bad Request, Car number information not provided";
             }
             var slotInfo = parkings.FirstOrDefault(x => x.Value == parking.car.car_number);
             if (slotInfo.Key > 0)
@@ -160,10 +174,10 @@ namespace ParkingLot.Data
                 response.isSuccessful = false;
                 response.message = $"Bad Request, parking information can't be null";
             }
-            else if (parking.slot_number == null)
+            else if (parking.slot_number < 0)
             {
                 response.isSuccessful = false;
-                response.message = $"Bad Request, Slot information not provided";
+                response.message = $"Bad Request, Invalid Slot number";
             }
 
             var slotInfo = parkings.FirstOrDefault(x => x.Key == parking.slot_number);

@@ -87,21 +87,22 @@ namespace ParkingLot.Data
             {
                 return $"Car with number {parking.car.car_number} is already parked";
             }
-            else if (parkings.ContainsValue(parking.slot_number))
-            {
-                return $"Car with slot number {parking.slot_number} is already parked";
-            }
+            //else if (parkings.ContainsValue(parking.slot_number))
+            //{
+            //    return $"Car with slot number {parking.slot_number} is already parked";
+            //}
             return string.Empty;
         }
 
-        public KeyValuePair<string, int> GetSlotInformationByCarNumber(string car_number)
+        public KeyValuePair<string, int> GetSlotInformationByCarNumber(Parking parking)
         {
-            return parkings.FirstOrDefault(x => x.Key == car_number);
+
+            return parkings.FirstOrDefault(x => x.Key == parking.car.car_number);
         }
 
-        public KeyValuePair<string, int> GetSlotInformationBySlotNumber(int slot_number)
+        public KeyValuePair<string, int> GetSlotInformationBySlotNumber(Parking parking)
         {
-            return parkings.FirstOrDefault(x => x.Value == slot_number);
+            return parkings.FirstOrDefault(x => x.Value == parking.slot_number);
         }
     }
 }

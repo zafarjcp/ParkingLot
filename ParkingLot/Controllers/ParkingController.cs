@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ParkingLot.Api.Models;
 using ParkingLot.Data;
 using ParkingLot.Models;
 using ParkingLotCore.Models;
@@ -23,17 +24,66 @@ namespace ParkingLot.Controllers
             unitOfWork = _unitOfWork;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("park")]
-        public ServiceResponse Park(string car_number)
+        public IActionResult Park([FromBody] ParkRequest request)
         {
             Parking parking = new Parking();
-            parking.car.car_number = car_number;
+
+            parking.car.car_number = request.car_number;
+            
             ServiceResponse response = unitOfWork.ParkingRepository.ParkCar(parking);
             
             _logger.LogInformation("Request received for Car Parking");
-            
-            return response;
+
+            if (response.isSuccessful)
+                return Ok(response);
+            else
+                return BadRequest(response);
+        }
+
+        [HttpDelete]
+        [Route("unpark")]
+        public IActionResult UnPark(int slot_number)
+        {
+            Parking parking = new Parking();
+
+            parking.slot_number = slot_number;
+
+            ServiceResponse response = unitOfWork.ParkingRepository.UnParkCar(parking);
+
+            _logger.LogInformation("Request received for Unpark Car");
+
+            if (response.isSuccessful)
+                return Ok(response);
+            else
+                return BadRequest(response);
+        }
+
+        [HttpGet]
+        [Route("get-info")]
+        public IActionResult SlotInformation(string car_number, int slot_number)
+        {
+            ServiceResponse response = new ServiceResponse();
+            Parking parking = new Parking();
+            if (string.IsNullOrEmpty(car_number))
+            {
+                parking.slot_number = slot_number;
+                response = unitOfWork.ParkingRepository.GetSlotInformationByCarNumber(parking);
+            }
+            else
+            {
+                parking.car.car_number = car_number;
+
+                response = unitOfWork.ParkingRepository.GetSlotInformationBySlotNumber(parking);
+            }
+
+            _logger.LogInformation("Slot information provided.");
+
+            if (response.isSuccessful)
+                return Ok(response);
+            else
+                return BadRequest(response);
         }
     }
 }

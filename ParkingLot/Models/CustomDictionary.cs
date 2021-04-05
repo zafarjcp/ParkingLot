@@ -11,12 +11,15 @@ namespace ParkingLot.Models
     public class UnitOfWork
     {
         private int parkingCapacity = 0;
-        private Dictionary<string, int> parkings { get; set; }
+        
+        public static Dictionary<string, int> parkings { get; set; }
+        
         public IParkingRepository ParkingRepository;
 
         public UnitOfWork(IConfiguration configuration) 
         {
-            parkings = new Dictionary<string, int>();
+            if(parkings == null)
+                parkings = new Dictionary<string, int>();
             parkingCapacity = configuration.GetValue<int>("parkingCapacity");
             
             ParkingRepository = new ParkingRepository(parkings, parkingCapacity);

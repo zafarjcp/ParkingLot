@@ -167,7 +167,7 @@ namespace ParkingLot.Data
             }
 
             var slotInfo = parkings.FirstOrDefault(x => x.Key == parking.slot_number);
-            if (slotInfo.Key != null)
+            if (slotInfo.Key > 0)
             {
                 response.isSuccessful = true;
                 response.message = "Slot Information";

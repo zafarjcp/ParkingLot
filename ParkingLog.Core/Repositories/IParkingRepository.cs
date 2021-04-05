@@ -11,7 +11,7 @@ namespace ParkingLotCore.Repositories
     {
         ServiceResponse ParkCar(Parking parking);
         ServiceResponse UnParkCar(Parking parking);
-        KeyValuePair<string, int> GetSlotInformationByCarNumber(Parking parking);
-        KeyValuePair<string, int> GetSlotInformationBySlotNumber(Parking parking);
+        SlotInformationResponse GetSlotInformationByCarNumber(Parking parking);
+        SlotInformationResponse GetSlotInformationBySlotNumber(Parking parking);
     }
 }

@@ -38,8 +38,11 @@ namespace ParkingLot.Data
                 return response;
             }
 
-            parkings.Add(parking.car.car_number, parking.slot_number);
+            int slotIndex = 0;
 
+            parkings.Add(parking.car.car_number, parkings.Count+1);
+
+            
             response.isSuccessful = true;
             response.message = "Car parked successfully";
             return response;
@@ -49,18 +52,22 @@ namespace ParkingLot.Data
         {
             ServiceResponse response = new ServiceResponse();
             int slotNumber = 0;
-            string message = ValidateInput(parking);
-            if (message != string.Empty)
+            if (parking == null)
             {
                 response.isSuccessful = false;
-                response.message = message;
-                return response;
+                response.message = $"Bad Request, parking information can't be null";
+            }
+            else if (parking.slot_number <= 0)
+            {
+                response.isSuccessful = false;
+                response.message = $"Bad Request, Slot information not provided";
             }
 
-            parkings.TryGetValue(parking.car.car_number, out slotNumber);
-            if (slotNumber > 0)
-            {
-                parkings.Remove(parking.car.car_number);
+            var slotInfo = parkings.Where(x => x.Value == parking.slot_number).FirstOrDefault();
+            if (slotInfo.Key != null)
+            {                
+                parkings.Remove(slotInfo.Key);
+                //parkings[]
                 response.isSuccessful = true;
                 response.message = "Car unparked successfully.";
             }
@@ -87,22 +94,68 @@ namespace ParkingLot.Data
             {
                 return $"Car with number {parking.car.car_number} is already parked";
             }
-            //else if (parkings.ContainsValue(parking.slot_number))
-            //{
-            //    return $"Car with slot number {parking.slot_number} is already parked";
-            //}
             return string.Empty;
         }
 
-        public KeyValuePair<string, int> GetSlotInformationByCarNumber(Parking parking)
+        public SlotInformationResponse GetSlotInformationByCarNumber(Parking parking)
         {
+            SlotInformationResponse response = new SlotInformationResponse();
+            if (parking == null)
+            {
+                response.isSuccessful = false;
+                response.message = $"Bad Request, parking information can't be null";
+            }
+            else if (parking.car.car_number == null)
+            {
+                response.isSuccessful = false;
+                response.message = $"Bad Request, Car information not provided";
+            }
+            var slotInfo = parkings.FirstOrDefault(x => x.Key == parking.car.car_number);
+            if (slotInfo.Key != null)
+            {
+                response.isSuccessful = true;
+                response.message = "Slot Information";
+                response.car_number = slotInfo.Key;
+                response.slot_number = slotInfo.Value;
+            }
+            else
+            {
+                response.isSuccessful = false;
+                response.message = "No records found against given car number"+ parking.car.car_number;
+            }
 
-            return parkings.FirstOrDefault(x => x.Key == parking.car.car_number);
+            return response;
+
         }
 
-        public KeyValuePair<string, int> GetSlotInformationBySlotNumber(Parking parking)
+        public SlotInformationResponse GetSlotInformationBySlotNumber(Parking parking)
         {
-            return parkings.FirstOrDefault(x => x.Value == parking.slot_number);
+            SlotInformationResponse response = new SlotInformationResponse();
+            if (parking == null)
+            {
+                response.isSuccessful = false;
+                response.message = $"Bad Request, parking information can't be null";
+            }
+            else if (parking.slot_number == null)
+            {
+                response.isSuccessful = false;
+                response.message = $"Bad Request, Slot information not provided";
+            }
+
+            var slotInfo = parkings.FirstOrDefault(x => x.Value == parking.slot_number);
+            if (slotInfo.Key != null)
+            {
+                response.isSuccessful = true;
+                response.message = "Slot Information";
+                response.car_number = slotInfo.Key;
+                response.slot_number = slotInfo.Value;
+            }
+            else
+            {
+                response.isSuccessful = false;
+                response.message = "No records found against given slot number : " + parking.slot_number;
+            }
+            return response;
         }
     }
 }

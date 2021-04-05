@@ -64,17 +64,16 @@ namespace ParkingLot.Controllers
         [Route("get-info")]
         public IActionResult SlotInformation(string car_number, int slot_number)
         {
-            ServiceResponse response = new ServiceResponse();
+            SlotInformationResponse response = new SlotInformationResponse();
             Parking parking = new Parking();
-            if (string.IsNullOrEmpty(car_number))
+            if (!string.IsNullOrEmpty(car_number))
             {
-                parking.slot_number = slot_number;
+                parking.car.car_number = car_number;
                 response = unitOfWork.ParkingRepository.GetSlotInformationByCarNumber(parking);
             }
             else
             {
-                parking.car.car_number = car_number;
-
+                parking.slot_number = slot_number;
                 response = unitOfWork.ParkingRepository.GetSlotInformationBySlotNumber(parking);
             }
 

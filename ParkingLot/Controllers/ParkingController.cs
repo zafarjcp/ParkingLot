@@ -24,6 +24,7 @@ namespace ParkingLot.Controllers
             unitOfWork = _unitOfWork;
         }
 
+        [RequestRateLimit]
         [HttpPost]
         [Route("park")]
         public IActionResult Park([FromBody] ParkRequest request)
@@ -42,6 +43,7 @@ namespace ParkingLot.Controllers
                 return BadRequest(response);
         }
 
+        [RequestRateLimit]
         [HttpDelete]
         [Route("unpark")]
         public IActionResult UnPark(int slot_number)
@@ -60,6 +62,7 @@ namespace ParkingLot.Controllers
                 return BadRequest(response);
         }
 
+        [RequestRateLimit]
         [HttpGet]
         [Route("get-info")]
         public IActionResult SlotInformation(string car_number, int slot_number)

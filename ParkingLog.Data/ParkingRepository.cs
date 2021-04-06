@@ -100,40 +100,7 @@ namespace ParkingLot.Data
 
             return response;
         }
-
-        private string ValidateInput(Parking parking)
-        {
-            if (parking == null)
-            {                
-                return $"Bad Request, parking information can't be null";
-            }
-            else if (parking.car.car_number == null)
-            {
-                return $"Bad Request, Car information not provided";
-            }
-            else if (parking.car.car_number != null && parkings.ContainsValue(parking.car.car_number))
-            {
-                return $"Car with number {parking.car.car_number} is already parked";
-            }
-            return string.Empty;
-        }
-
-        private bool ValidateCarNumber(string car_number)
-        {
-            if (car_number.Length > 0 && car_number[0] >= 65 && car_number[0] <= 90)
-            {
-                for (int i = 1; i < car_number.Length; i++)
-                {
-                    if ((car_number[i] >= 48 && car_number[i] <= 57) || (car_number[i] >= 65 && car_number[i] <= 90))
-                        continue;
-                    else
-                        return false;
-                }
-                return true;
-            }
-            else
-                return false;
-        }
+        
 
         public SlotInformationResponse GetSlotInformationByCarNumber(Parking parking)
         {
@@ -194,6 +161,40 @@ namespace ParkingLot.Data
                 response.message = "No records found against given slot number : " + parking.slot_number;
             }
             return response;
+        }
+
+        private string ValidateInput(Parking parking)
+        {
+            if (parking == null)
+            {
+                return $"Bad Request, parking information can't be null";
+            }
+            else if (parking.car.car_number == null)
+            {
+                return $"Bad Request, Car information not provided";
+            }
+            else if (parking.car.car_number != null && parkings.ContainsValue(parking.car.car_number))
+            {
+                return $"Car with number {parking.car.car_number} is already parked";
+            }
+            return string.Empty;
+        }
+
+        private bool ValidateCarNumber(string car_number)
+        {
+            if (car_number.Length > 0 && car_number[0] >= 65 && car_number[0] <= 90)
+            {
+                for (int i = 1; i < car_number.Length; i++)
+                {
+                    if ((car_number[i] >= 48 && car_number[i] <= 57) || (car_number[i] >= 65 && car_number[i] <= 90))
+                        continue;
+                    else
+                        return false;
+                }
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
